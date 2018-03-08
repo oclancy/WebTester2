@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject'
 
 @Injectable()
 export class SocketService {
 
-  public GetTime() : Observable<string>{
+  private Socket: any;
 
-    return this.client.get<string>('/api/time');
+  public GetTime() {
+
+    //return this.client.get<string>('/api/time');
+    this.Socket.next(JSON.stringify({ op: 'GetTime' }));
+    
   }
 
-  constructor(private client: HttpClient) { }
+  constructor(private client: HttpClient)
+  {
+    this.Socket = WebSocketSubject.create('ws://localhost:4368/ws?id=ollie');
+
+    this.Socket.subscribe(
+      (msg) => console.log('message received: ' + msg),
+      (err) => console.log(err),
+      () => console.log('complete')
+    );
+
+  }
 
 }

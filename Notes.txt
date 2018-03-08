@@ -1,0 +1,11 @@
+
+***RabbitMQ****
+Open port 5672 (outbound) - the restart service to allow connections from docker (and elsewhere)
+
+
+****DOCKER****
+docker run --name powershell -it microsoft/windowsservercore powershell
+
+docker run --name timepub webtester/timepub
+
+docker run --name timepub webtester/timepub --mount source=

@@ -22,6 +22,11 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "PriceCache", "PriceCahce\Pr
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PSLauncher", "PSLauncher\PSLauncher.fsproj", "{AEEDAAF8-868E-40C2-B9EC-18454BCB97F4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5749997E-D3D7-4B4F-B95B-F580CBC04D31}"
+	ProjectSection(SolutionItems) = preProject
+		Notes.txt = Notes.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

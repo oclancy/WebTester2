@@ -1,0 +1,11 @@
+FROM microsoft/windowsservercore
+
+VOLUME ["c:/testlogs"]
+
+COPY ./bin/release/ /bin/
+
+LABEL version="1.0"
+
+ENTRYPOINT ["./bin/TimePub"]
+
+CMD ["OLLIE-LAPTOP2", "amq.direct", "TimePub"]

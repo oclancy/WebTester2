@@ -4,6 +4,10 @@ namespace Messages
 {
     [ProtoContract]
     [ProtoInclude(1000, typeof(DataMessage))]
+    [ProtoInclude(1001, typeof(TimeMessage))]
+    [ProtoInclude(1002, typeof(StopMessage))]
+    [ProtoInclude(1003, typeof(PriceRequestMessage))]
+    [ProtoInclude(1004, typeof(PriceMessage))]
     public interface IMessage{ }
 
     [ProtoContract]

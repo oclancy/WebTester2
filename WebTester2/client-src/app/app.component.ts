@@ -18,11 +18,13 @@ import { Observable } from 'rxjs/Rx';
   ngOnInit(): void {
     this.Time = "Waiting..."
 
-    Observable.interval(500)
-              .subscribe((x) => {
-                this.socketService.GetTime()
-                    .subscribe( s => this.Time = s );
-              })
+    //Observable.interval(500)
+    //          .subscribe((x) => {
+    //            this.socketService.GetTime()
+    //                .subscribe( s => this.Time = s );
+    //  })
+
+    this.socketService.GetTime();
   }
 
   title = 'app';

@@ -36,9 +36,9 @@ namespace WebTester2
         app.UseDeveloperExceptionPage();
       }
 
+      app.UseWebSockets();
       app.UseDefaultFiles();
       app.UseStaticFiles();
-
 
       app.MapWebSocketManager("/ws", serviceProvider.GetService<WebSocketHandler>());
 

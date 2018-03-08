@@ -6,7 +6,8 @@ using NLog;
 
 namespace TimePub
 {
-    public class Handler : IHandleMessage<StopMessage>
+    public class Handler : IHandleMessage<StopMessage>,
+                           IHandleMessage<TimeMessage>
     {
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -22,6 +23,12 @@ namespace TimePub
             Logger.Info(message.Reason);
             m_cancelTokenSource.Cancel();
             return Task.FromResult(true);
+        }
+
+        public Task Handle( TimeMessage message )
+        {
+            Logger.Info(message);
+            return Task.FromResult<object>(null);
         }
     }
 }

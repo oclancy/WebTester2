@@ -10,7 +10,7 @@ namespace TimePub
     class Program
     {
         static Logger Logger = LogManager.GetCurrentClassLogger();
-        static CancellationTokenSource m_cancellationToken = new CancellationTokenSource();
+        static CancellationTokenSource m_cancellationTokenSrc = new CancellationTokenSource();
         static MessageDespatcher m_despatcher = new MessageDespatcher();
 
         public static MessageDespatcher Despatcher { get => m_despatcher; set => m_despatcher = value; }
@@ -18,21 +18,38 @@ namespace TimePub
         static void Main(string[] args)
         {
             
-            var client = new RabbitMqClient.Client(args[1], args[2], args[3]);
+            var client = new RabbitMqClient.Client(args[0], args[1], args[2]);
 
-            var observable = Observable.FromEvent<EventHandler<IMessage>, IMessage>(handler => client.MessageRecieved += handler,
-                                                                                    handler => client.MessageRecieved -= handler);
+            var keyPressedSource = Observable.FromEvent<ConsoleCancelEventHandler, ConsoleCancelEventArgs>(h =>
+                                    {
+                                        ConsoleCancelEventHandler handler = ( s, e ) => { h(e); };
+                                        return handler;
+                                    },
+                                    ev => Console.CancelKeyPress += ev,
+                                    ev => Console.CancelKeyPress -= ev);
+
+            var observable = Observable.FromEvent<EventHandler<IMessage>, IMessage>(h => {
+                                                        EventHandler<IMessage> handler = ( s, e ) => { h(e); };
+                                                        return handler;
+                                                        },
+                                                        handler => client.MessageRecieved += handler,
+                                                        handler => client.MessageRecieved -= handler);
+
+            observable
+                .TakeUntil(keyPressedSource)
+                .Subscribe(Despatcher, m_cancellationTokenSrc.Token);
 
 
-            observable.Subscribe(Despatcher, m_cancellationToken.Token);
+            var projhandler = new Handler(m_cancellationTokenSrc);
+
+            Despatcher.RegisterHandler<StopMessage>(projhandler);
+            Despatcher.RegisterHandler<TimeMessage>(projhandler);
 
             var source = Observable.Interval(new TimeSpan(0, 0, 1));
-            source.Subscribe((time) => client.Send(new TimeMessage() { Time = time }), m_cancellationToken.Token);
+            source.TakeUntil(keyPressedSource)
+                  .Subscribe(( time ) => client.Send(new TimeMessage() { Time = time }), m_cancellationTokenSrc.Token);
 
-            var stopHandler = new Handler(m_cancellationToken);
-
-            Despatcher.RegisterHandler<StopMessage>(stopHandler);
-
+            client.Start();
             observable.Wait();
         }
     }

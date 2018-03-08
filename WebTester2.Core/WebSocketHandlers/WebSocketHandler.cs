@@ -13,7 +13,7 @@ namespace WebTester2.WebSockets.WebSocketHandlers
 
         public override async Task<AbstractWebSocketConnection> OnConnected(HttpContext context)
         {
-            var name = context.Request.Query["Name"];
+            var name = context.Request.Query["Id"];
             if (!string.IsNullOrEmpty(name))
             {
                 var connection = Connections.FirstOrDefault(m => ((WebSocketConnection)m).Id == name);
@@ -24,7 +24,7 @@ namespace WebTester2.WebSockets.WebSocketHandlers
 
                     connection = new WebSocketConnection(this)
                     {
-                        Id = name,
+                        Id = Guid.NewGuid().ToString(),
                         WebSocket = webSocket
                     };
 
