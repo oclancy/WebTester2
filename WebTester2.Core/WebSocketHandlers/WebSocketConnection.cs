@@ -10,52 +10,44 @@ namespace WebTester2.WebSockets.WebSocketHandlers
 {
     public class WebSocketConnection : AbstractWebSocketConnection
     {
-        public WebSocketConnection( WebSocketHandler handler) : base(handler)
+        private readonly Func<ReceiveMessage,Task> m_onMessageCallBack;
+
+        public WebSocketConnection( WebSocketHandler handler, 
+                                    Func<ReceiveMessage,Task> onMessageCallBack ) 
+            : base(handler)
         {
+            this.m_onMessageCallBack = onMessageCallBack;
         }
 
         public string Id { get; set; }
+
+        public override async Task Init()
+        {
+            await SendMessageAsync(Id.ToString());
+        }
 
         public override async Task ReceiveAsync(string message)
         {
             var receiveMessage = JsonConvert.DeserializeObject<ReceiveMessage>(message);
 
-            var receiver = Handler.Connections.FirstOrDefault(m => ((WebSocketConnection)m).Id == receiveMessage.Receiver);
+            var receiver = Handler.Connections
+                                  .FirstOrDefault( m => ((WebSocketConnection)m).Id == receiveMessage.Id.ToString());
 
             if (receiver != null)
             {
-                var sendMessage = JsonConvert.SerializeObject(new SendMessage
-                {
-                    Sender = Id,
-                    Message = receiveMessage.Message
-                });
-
-                await receiver.SendMessageAsync(sendMessage);
+               await m_onMessageCallBack(receiveMessage);
             }
-            else
-            {
-                var sendMessage = JsonConvert.SerializeObject(new SendMessage
-                {
-                    Sender = Id,
-                    Message = "Can not seed to " + receiveMessage.Receiver
-                });
 
-                await SendMessageAsync(sendMessage);
-            }
         }
 
-        private class ReceiveMessage
+        public class ReceiveMessage
         {
-            public string Receiver { get; set; }
+            public Guid Id{ get; set; }
 
-            public string Message { get; set; }
+            public string Data { get; set; }
+
+            public string Op { get; set; }
         }
 
-        private class SendMessage
-        {
-            public string Sender { get; set; }
-
-            public string Message { get; set; }
-        }
     }
 }

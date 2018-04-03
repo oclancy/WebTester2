@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Messages;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
@@ -12,11 +14,16 @@ namespace WebTester2.WebSockets.WebSocketManager
     {
         public AbstractWebSocketHandler Handler { get; }
 
-        public WebSocket WebSocket { get; set; }
+        public System.Net.WebSockets.WebSocket WebSocket { get; set; }
 
         public AbstractWebSocketConnection( AbstractWebSocketHandler handler)
         {
             Handler = handler;
+        }
+
+        public virtual async Task SendMessageAsync( IMessage message )
+        {
+            await SendMessageAsync(JsonConvert.SerializeObject(message));
         }
 
         public virtual async Task SendMessageAsync(string message)
@@ -37,6 +44,8 @@ namespace WebTester2.WebSockets.WebSocketManager
                 );
         }
 
+        public abstract Task Init( );
+       
         public abstract Task ReceiveAsync(string message);
     }
 }

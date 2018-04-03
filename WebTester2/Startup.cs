@@ -1,11 +1,13 @@
 using System;
+using Messages;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebTester2.Services;
+using WebTester2.Config;
 using WebTester2.WebSockets.WebSocketHandlers;
 using WebTester2.WebSockets.WebSocketManager;
+using WebTester2.WebSockets.MessageHandlers;
 
 namespace WebTester2
 {
@@ -44,6 +46,8 @@ namespace WebTester2
 
       app.UseMvc();
 
+      app.RegisterMessageHandlers( serviceProvider.GetService<MessageDespatcher>(),
+                                   serviceProvider.GetService<WebSocketHandler>() );
     }
   }
 }

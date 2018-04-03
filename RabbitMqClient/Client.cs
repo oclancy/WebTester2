@@ -4,8 +4,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace RabbitMqClient
 {
@@ -23,10 +22,10 @@ namespace RabbitMqClient
 
         private static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public Client(string host, string exchange, string queneName)
+        public Client(string host, string exchange, string queueName)
         {
             Exchange = exchange;
-            Queue = queneName;
+            Queue = queueName;
 
             var factory = new ConnectionFactory()
             {
@@ -40,20 +39,24 @@ namespace RabbitMqClient
             m_channel = m_connection.CreateModel();
             m_channel.ExchangeDeclare(Exchange, "direct", true, false, new Dictionary<string, object>());
             var queue = m_channel.QueueDeclare(Queue, false, false, false, new Dictionary<string, object>());
-            //m_channel.QueueBind(queue.QueueName, Exchange, "test", new Dictionary<string, object>());
 
             m_channel.ModelShutdown += ( s, e ) => m_connection.Close();
             
         }
 
-        public Client(string host, string exchange, string queneName, string[] topics)
-            :this( host,  exchange,  queneName)
+        public Client(string host, string exchange, string queueName, string[] topics)
+            :this( host,  exchange,  queueName)
         {
             Topics = topics;
         }
 
+        public IPublisherMap PublisherMap { get;set;}
+
         public void Start()
         {
+            foreach(var topic in Topics)
+                m_channel.QueueBind(Queue, Exchange, topic, new Dictionary<string, object>());
+
             m_consumer = new EventingBasicConsumer(m_channel);
             m_consumer.Received += Consumer_Received;
             m_channel.BasicConsume(Queue, true, m_consumer);
@@ -70,6 +73,8 @@ namespace RabbitMqClient
         {
             Logger.Info($"sending {message}");
             var props = m_channel.CreateBasicProperties();
+
+            var topic = PublisherMap?.GetTopic(message) ?? Queue;
 
             m_channel.BasicPublish(Exchange, Queue, props, message.Serialise());
         }

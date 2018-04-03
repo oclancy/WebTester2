@@ -75,7 +75,7 @@ module.exports = module.exports.toString();
 /***/ "./client-src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\r\n  <h1>\r\n    The time is {{ Time }}!\r\n  </h1>\r\n  <nav>\r\n    <a routerLink=\"/message\">Message</a>\r\n  </nav>\r\n  <img width=\"300\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\r\n\r\n  <router-outlet></router-outlet>\r\n</div>\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\r\n  <h1>\r\n    The time is {{ Time }}!\r\n  </h1>\r\n  <nav>\r\n    <a routerLink=\"/\">Home</a>\r\n    <a routerLink=\"/message\">Message</a>\r\n  </nav>\r\n  <img width=\"300\" alt=\"Angular Logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==\">\r\n\r\n  <router-outlet></router-outlet>\r\n</div>\n\n\n"
 
 /***/ }),
 
@@ -133,12 +133,13 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm2015/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm2015/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm2015/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("./client-src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__message_message_component__ = __webpack_require__("./client-src/app/message/message.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__socket_service_service__ = __webpack_require__("./client-src/app/socket-service.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routing_module__ = __webpack_require__("./client-src/app/app-routing.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__test_directive__ = __webpack_require__("./client-src/app/test.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_home_component__ = __webpack_require__("./client-src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm2015/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("./client-src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__message_message_component__ = __webpack_require__("./client-src/app/message/message.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__socket_service_service__ = __webpack_require__("./client-src/app/socket-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_routing_module__ = __webpack_require__("./client-src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__test_directive__ = __webpack_require__("./client-src/app/test.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_home_component__ = __webpack_require__("./client-src/app/home/home.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -154,25 +155,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_4__message_message_component__["a" /* MessageComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__test_directive__["a" /* TestDirective */],
-            __WEBPACK_IMPORTED_MODULE_8__home_home_component__["a" /* HomeComponent */]
+            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_5__message_message_component__["a" /* MessageComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__test_directive__["a" /* TestDirective */],
+            __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClientModule */],
-            __WEBPACK_IMPORTED_MODULE_6__app_routing_module__["a" /* AppRoutingModule */]
+            __WEBPACK_IMPORTED_MODULE_7__app_routing_module__["a" /* AppRoutingModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormsModule */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_5__socket_service_service__["a" /* SocketService */],
+            __WEBPACK_IMPORTED_MODULE_6__socket_service_service__["a" /* SocketService */],
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -260,7 +263,7 @@ module.exports = module.exports.toString();
 /***/ "./client-src/app/message/message.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  message works!\n</p>\n"
+module.exports = "<p>\n  Send a message\n</p>\n<div class=\"container\">\r\n  <form #messageForm=\"ngForm\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm\">\r\n        <label>\r\n          Send Message:\r\n          <select class=\"form-control\"\r\n                  id=\"message\"\r\n                  required\r\n                  [(ngModel)]=\"op\"\r\n                  name=\"op\">\r\n            <option *ngFor=\"let message of MessageTypes\" [value]=\"message\">{{message}}</option>\r\n          </select>\r\n        </label>\r\n      </div>\r\n      <div class=\"col-sm\">\r\n        <input type=\"text\" [(ngModel)]=\"data\" name=\"data\"/>\r\n      </div>\r\n      <div class=\"col-sm\">\r\n        <button (click)=\"sendMessage()\">Send</button>\r\n      </div>\r\n    </div>\r\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -270,6 +273,7 @@ module.exports = "<p>\n  message works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MessageComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm2015/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__socket_service_service__ = __webpack_require__("./client-src/app/socket-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -280,8 +284,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 let MessageComponent = class MessageComponent {
-    constructor() { }
+    constructor(socketService) {
+        this.socketService = socketService;
+    }
+    get MessageTypes() {
+        return ["Shutdown", "RequestPrice"];
+    }
+    sendMessage() {
+        this.socketService
+            .Send(this.op, this.data);
+    }
     ngOnInit() {
     }
 };
@@ -291,7 +305,7 @@ MessageComponent = __decorate([
         template: __webpack_require__("./client-src/app/message/message.component.html"),
         styles: [__webpack_require__("./client-src/app/message/message.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__socket_service_service__["a" /* SocketService */]])
 ], MessageComponent);
 
 
@@ -322,11 +336,19 @@ let SocketService = class SocketService {
     constructor(client) {
         this.client = client;
         this.Socket = __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_dom_WebSocketSubject__["a" /* WebSocketSubject */].create('ws://localhost:4368/ws?id=ollie');
-        this.Socket.subscribe((msg) => console.log('message received: ' + msg), (err) => console.log(err), () => console.log('complete'));
+        this.Socket.subscribe(this.OnMessage, (err) => console.log(err), () => console.log('complete'));
+    }
+    Send(op, data) {
+        this.Socket.next(JSON.stringify({ id: this.id, op: op, data: data }));
     }
     GetTime() {
         //return this.client.get<string>('/api/time');
-        this.Socket.next(JSON.stringify({ op: 'GetTime' }));
+        this.Send('GetTime', null);
+    }
+    OnMessage(msg) {
+        console.log('message received: ' + msg);
+        if (this.id == null)
+            this.id = msg;
     }
 };
 SocketService = __decorate([
@@ -399,7 +421,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(err => console.log(err));

@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using System;
+using ProtoBuf;
 
 namespace Messages
 {
@@ -36,6 +37,11 @@ namespace Messages
     {
         [ProtoMember(1)]
         public string Topic { get; set; }
+
+        public static IMessage Create( string data )
+        {
+            throw new NotImplementedException();
+        }
     }
 
     [ProtoContract]

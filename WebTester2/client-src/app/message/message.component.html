@@ -1,3 +1,27 @@
 <p>
-  message works!
+  Send a message
 </p>
+<div class="container">
+  <form #messageForm="ngForm">
+    <div class="row">
+      <div class="col-sm">
+        <label>
+          Send Message:
+          <select class="form-control"
+                  id="message"
+                  required
+                  [(ngModel)]="op"
+                  name="op">
+            <option *ngFor="let message of MessageTypes" [value]="message">{{message}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="col-sm">
+        <input type="text" [(ngModel)]="data" name="data"/>
+      </div>
+      <div class="col-sm">
+        <button (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Messages
@@ -31,6 +32,18 @@ namespace Messages
 
             if (m_callbackDict.ContainsKey(type))
                 m_callbackDict[type].Invoke(value);
+        }
+
+        public void RegisterHandler( Type messageType, object handler )
+        {
+            var method =handler.GetType()
+                               .GetMethod("Handle", 
+                                    BindingFlags.InvokeMethod | BindingFlags.Instance ,
+                                    null, 
+                                    new[] { messageType } ,
+                                    null);
+
+            m_callbackDict.Add(messageType, ( message ) => (Task)method.Invoke( handler, new[] { message }));
         }
 
         public void RegisterHandler<T>(IHandleMessage<T> handler) where T : IMessage

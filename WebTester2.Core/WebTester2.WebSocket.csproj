@@ -7,8 +7,8 @@
     <ProjectGuid>{FC8AFC59-9CE4-4C00-9779-25EFAEECC0D7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebTester2.WebSocket</RootNamespace>
-    <AssemblyName>WebTester2.WebSocket</AssemblyName>
+    <RootNamespace>WebTester2.WebSockets</RootNamespace>
+    <AssemblyName>WebTester2.WebSockets</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageHandlers\Extensions.cs" />
+    <Compile Include="MessageHandlers\TimeMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebSocketHandlers\WebSocketConnection.cs" />
     <Compile Include="WebSocketHandlers\WebSocketHandler.cs" />
@@ -70,5 +72,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj">
+      <Project>{51B17619-547F-46C4-A3A1-A1C046BB1335}</Project>
+      <Name>Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RabbitMqClient\RabbitMqClient.csproj">
+      <Project>{F809998B-1E0F-48D8-A2F0-950914F23ABC}</Project>
+      <Name>RabbitMqClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
